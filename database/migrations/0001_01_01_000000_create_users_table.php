@@ -17,13 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('perfil', ['ADNIMISTRADOR', 'EMPLEADO'])->default('ADMINISTRADOR');
-            $table->string('telefono', 10);
+            $table->enum('perfil', ['ADMINISTRADOR', 'EMPLEADO'])->default('ADMINISTRADOR');
+            $table->string('telefono', 10)->nullable();
             $table->enum('estado', ['ACTIVO', 'BLOQUEADO'])->default('ACTIVO');
-            $table->string('imagen', 150);
+            $table->string('imagen', 150)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
+ 
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

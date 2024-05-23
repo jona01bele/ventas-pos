@@ -1,6 +1,7 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+@extends('ventapos.layouts.admin')
 
-@section('content')
+@section('contenido')    <!--section('content')   esta es la seccion original pero la cambien por el nuevo extends-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
