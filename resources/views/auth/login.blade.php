@@ -1,7 +1,7 @@
-{{-- @extends('layouts.app') --}}
-@extends('ventapos.layouts.admin')
+ @extends('layouts.app') 
+{{-- @extends('ventapos.layouts.admin') --}}
 
-@section('contenido')    <!---section('content') sesion del login original-->
+@section('content')    <!---section('content') sesion del login original-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
