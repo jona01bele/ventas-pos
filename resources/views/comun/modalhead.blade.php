@@ -6,6 +6,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-white">
+            <!--colocar el nombre de componente..... luego sigue una validacion si es editar o registrar-->
             <b>{{$componentName}}</b> | {{$selected_id > 0 ? 'EDITAR' : 'CREAR'}}
           </h5>
           {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
