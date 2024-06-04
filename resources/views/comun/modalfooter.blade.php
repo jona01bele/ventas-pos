@@ -1,12 +1,15 @@
 </div>
 <div class="modal-footer">
-    <button type="button" wire.click.prevent="resetUI()" class="btn btn-secondary close-btn text-info" data-dismiss="modal">Cerrar</button>
 
-    @if($Selected_id < 1)
-        <button type="button" wire.click.prevent="Store()" class="btn btn-secondary close-modal" >Registrar</button>    
+    <button type="button" wire:click.prevent="limpiar()" class="btn btn-light close-btn text-info" data-dismiss="modal">Cerrar</button>
+
+    @if($seleccionar_id < 1)
+        <button type="button" wire:click.prevent="store()" class="btn btn-secondary close-modal">Registrar</button>    
     @else
-        <button type="button" wire.click.prevent="Update()" class="btn btn-secondary close-modal" >Actualizar</button>
+        <button type="button" wire:click.prevent="update()" class="btn btn-secondary close-modal">Actualizar</button>
     @endif
+
+
 </div>
 </div>
 </div>

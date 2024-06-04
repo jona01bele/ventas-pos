@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Sistema de ventas JR </title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-    
+    @livewireScripts
+    @livewireStyles
     @include('ventapos.layouts.styles')
 
 </head>
@@ -62,10 +63,13 @@
         </div>
 
     </aside> -->
-
+    
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     @include('ventapos.layouts.js')
+   
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    
+    
 
 </body>
 </html>

@@ -21,7 +21,7 @@
  <!--Es probable que currency.js permita dar formato a los números como valores monetarios-->
  <script src="{{ asset('plugins/currency/currency.js')}}"></script>
 
- <script src="{{asset('plugins/font-icons/fontawesome/js/all.min.js')}}"></script>
+<script src="{{asset('plugins/font-icons/fontawesome/js/all.min.js')}}"></script>
 
   <!-- END GLOBAL MANDATORY SCRIPTS -->
  
@@ -45,4 +45,3 @@
     }
   </script>
 
-  @livewireScripts

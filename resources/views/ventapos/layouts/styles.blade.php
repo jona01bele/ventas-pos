@@ -58,4 +58,4 @@
     }
 </style>
 
-@livewireStyles
+
