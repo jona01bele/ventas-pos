@@ -19,15 +19,18 @@ class CategoriaSeeder extends Seeder
         ]);
         Categoria::create([
             'nombre' => 'Tenis',
-            'imagen'=> 'https://dummyimage.com/200x150/5c5756/fff',
+           'imagen'=> 'https://dummyimage.com/200x150/5c5756/fff',
+           
         ]);
         Categoria::create([
             'nombre' => 'Celulares',
             'imagen'=> 'https://dummyimage.com/200x150/5c5756/fff',
+            
         ]);
         Categoria::create([
             'nombre' => 'Computadoras',
             'imagen'=> 'https://dummyimage.com/200x150/5c5756/fff',
+            
         ]);
 
     }

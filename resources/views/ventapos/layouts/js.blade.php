@@ -1,5 +1,4 @@
  <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
- <script src="{{ asset('assets/js/libs/jquery-3.1.1.min.js')}}"></script>
  <!--Popper.js es una biblioteca que se utiliza para posicionar elementos dinámicos , como tooltips, popovers y menús desplegables.-->
  <script src="{{ asset('bootstrap/js/popper.min.js')}}"></script>
  <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
@@ -12,6 +11,7 @@
          App.init();
      });
  </script>
+ 
  <!--este escript si va utilizar mas adelante en el proyecto-->
  <script src="{{ asset('assets/js/custom.js')}}"></script>
  <!--Incluir tu código personalizado en un archivo separado como custom.js y entre otras-->
@@ -21,7 +21,7 @@
  <!--Es probable que currency.js permita dar formato a los números como valores monetarios-->
  <script src="{{ asset('plugins/currency/currency.js')}}"></script>
 
-<script src="{{asset('plugins/font-icons/fontawesome/js/all.min.js')}}"></script>
+{{-- <script src="{{asset('plugins/font-icons/fontawesome/js/all.min.js')}}"></script> --}}
 
   <!-- END GLOBAL MANDATORY SCRIPTS -->
  

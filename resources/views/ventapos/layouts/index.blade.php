@@ -1,4 +1,4 @@
-
+{{-- 
 <div class="row sales layout-top-spacing">
     <div class="col-sm-12">
         <div class="widget widget-chart-one">
@@ -57,4 +57,12 @@
     document.addEventListener('DOMContentLoades', function(){
 
     });
-</script>
+</script> --}}
+
+{{-- @extends('ventapos.layouts.admin')
+
+@section('contenido')
+    <h1>Listado de Categorías</h1>
+
+    
+@endsection --}}

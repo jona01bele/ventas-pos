@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Sistema de ventas JR </title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-    @livewireScripts
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <script src="{{ asset('assets/js/libs/jquery-3.1.1.min.js') }}"></script>
     @livewireStyles
+   
     @include('ventapos.layouts.styles')
 
 </head>
+
 <body class="sidebar-noneoverflow dashboard-sales">
     <!-- BEGIN LOADER -->
-    <div id="load_screen"> <div class="loader"> <div class="loader-content">
-        <div class="spinner-grow align-self-center"></div>
-    </div></div></div>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-      @include('ventapos.partials.header')
+    @include('ventapos.partials.header')
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
@@ -31,20 +38,21 @@
         <!--  BEGIN SIDEBAR  -->
         @include('ventapos.partials.sidebar')
         <!--  END SIDEBAR  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <!--  BEGIN CONTENT  -->
             <div class="layout-px-spacing">
                 @yield('contenido')
+
             </div>
             <!--  END CONTENT  -->
-            
+
 
             <!--  FOOTER -->
             @include('ventapos.partials.footer')
-             <!-- END  FOOTER -->
-            
+            <!-- END  FOOTER -->
+
         </div>
         <!--  END CONTENT AREA  -->
 
@@ -63,13 +71,14 @@
         </div>
 
     </aside> -->
-    
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    @include('ventapos.layouts.js')
-   
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    
-    
 
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    @livewireScripts 
+    @include('ventapos.layouts.js')
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+  
 </body>
+
 </html>

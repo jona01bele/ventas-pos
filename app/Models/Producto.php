@@ -11,10 +11,15 @@ class Producto extends Model
     protected $fillable = [
         'nombre',
         'codigobarras',
+        'categoria_id',
         'costo',
         'precio',
         'stock',
         'alertas',
         'imagen',
     ];
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::class , 'categoria_id');
+    }
 }
