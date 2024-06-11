@@ -14,13 +14,14 @@
                 <input type="text" wire:model.lazy="nombre" placeholder="ej: Cursos" class="form-control">
             </div>
         </div>
-        @error('nombre') <span class="text-danger er">{{$mensaje}}</span>  @enderror       
+        @error('nombre') <span class="text-danger er">{{$mensajes}}</span> @enderror
+          
         
         <div class="col-sm-12 mt-3">
             <div class="form-group custom-file">
                 <input type="file" class="custom-file-input form-control" wire:model="imagen" accept="image/x-png, image/gif, image/jpeg">
                 <label for="" class="custom-file-label">Imagen{{$imagen}}</label>
-                @error('imagen') <span class="text-danger er">{{$mensaje}}</span>@enderror
+                @error('imagen') <span class="text-danger er">{{$mensajes}}</span>@enderror
             </div>
         </div>
     </div>

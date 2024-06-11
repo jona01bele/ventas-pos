@@ -9,14 +9,14 @@ use Livewire\WithPagination;  // trait para la paginacion
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage; // para poder manejar archivos o imagenes dentro de nuestro proyecto con laravel
 
-class CategoriasComponent extends Component
+class CategoriasController extends Component
 {
     use WithFileUploads; // uso de trait    
     use WithPagination; // uso de trait
 
     // propiedades o variable que vamos a utilizar en la vista
     public $nombre, $imagen, $buscador, $seleccionar_id, $tituloPagina, $componenteNombre;
-    private  $paginacion = 5; // variable privada para la paginacin y una base 5
+    private  $paginacion = 2; // variable privada para la paginacin y una base 5
     //#[Layout('ventapos.layouts.admin')] // voy a probar con esta como apcion ya que el metodo ->layout() no me quiere funcionar
 
     public function mount()
@@ -52,8 +52,9 @@ class CategoriasComponent extends Component
     public function store()
     {
         $rules = [
-            'nombre' => 'required|unique:categorias|min:3'
+            'nombre' => 'required|unique:categorias|min:3',
         ];
+
         $mensajes = [
             'nombre.required' => 'El nombre debe ser ingresado',
             'nombre.unique' => 'La información no puede ser duplicada',

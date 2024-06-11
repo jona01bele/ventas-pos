@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\CategoriasComponent;
-
+use App\Livewire\CategoriasController;
+use App\Livewire\ProductosController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,5 +15,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //manera  de livewire cuando se crea la rutas
-Route::get('/categoria', CategoriasComponent::class)->name('categoria');
+Route::get('/categoria', CategoriasController::class)->name('categoria');
+Route::get('/producto', ProductosController::class)->name('producto');
 

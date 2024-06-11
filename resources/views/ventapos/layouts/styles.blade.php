@@ -12,6 +12,8 @@
 <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 <link rel="stylesheet" href="{{asset('plugins/font-icons/fontawesome/css/regular.css')}}">
 
+<link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">
+
 <link href="{{asset('plugins/font-icons/fontawesome/css/fontawesome.css')}}" rel="stylesheet" type="text/css">
 
 <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css')}}">
@@ -55,6 +57,10 @@
             display: block;
         }
     }
+color del sidebard en caso que se quiera modificar
+    .sidebar-theme #compactSidebar {
+    background: #032c1f;
+}
 </style>
 
 

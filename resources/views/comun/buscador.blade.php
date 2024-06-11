@@ -10,7 +10,7 @@
                  </span>     
              </div>
           
-             <input type="text" wire:model.live="buscador" placeholder="Buscar" class="form-control">           
+             <input type="text" wire:model.live="buscador" placeholder="Buscar..." class="form-control">           
         </div>
         
     </div>
