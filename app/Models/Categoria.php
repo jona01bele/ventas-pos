@@ -17,7 +17,7 @@ class Categoria extends Model
     ];
     public function producto()
     {
-        return $this->hasMany(Producto::class, 'id');
+        return $this->hasMany(Producto::class, 'categoria_id');
     }
 
    //manera de colocar una imagen prederminada en laravel 11

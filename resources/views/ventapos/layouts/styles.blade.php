@@ -18,7 +18,6 @@
 
 <link href="{{asset('css/fontawesome.css')}}" rel="stylesheet" type="text/css')}}">
 
-
 <link href="{{asset('assets/css/elements/avatar.css')}}" rel="stylesheet" type="text/css" class="structure" />
 
 <link href="{{asset('plugins/sweetalerts/sweetalerts.css')}}" rel="stylesheet" type="text/css')}}">

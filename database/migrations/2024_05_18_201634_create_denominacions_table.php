@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('denominacions', function (Blueprint $table) {
             $table->id();
             $table->enum('tipomoneda',['BILLETE', 'MONEDA', 'OTRO'])->default('BILLETE');
-            $table->string('valor', 200);
+            $table->float('valor', 10 , 2);
             $table->string('imagen', 150)->nullable();
             $table->timestamps();
         });

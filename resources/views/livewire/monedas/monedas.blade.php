@@ -21,61 +21,38 @@
                     <table class="table table-bordered table-striped mt-1">
                         <thead class="text-white" style="background: #5c1ac3">
                             <tr>
-                                <th class="table-th text-white">PRODUCTOS</th>
-                                <th class="table-th text-white text-center">CODIGO</th>
-                                <th class="table-th text-white text-center">CATEGORIA</th>
-                                <th class="table-th text-white text-center">PRECIO</th>
-                                <th class="table-th text-white text-center">STOCK</th>
-                                <th class="table-th text-white text-center">INV-MINIMO</th>
+                                <th class="table-th text-white">TIPO MONEDA</th>
+                                <th class="table-th text-white text-center">VALOR</th>
                                 <th class="table-th text-white text-center">IMAGEN</th>
                                 <th class="table-th text-white text-center">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($productos as $producto)
+                            @foreach ($monedas as $moneda)
                             <tr>
-                                <td><h6>{{ $producto->nombre }}</h6></td>
-                                <td><h6 class="text-center">{{ $producto->codigobarras }}</h6></td>
-                                <td> <h6 class="text-center">{{ $producto->categoria->nombre }}</h6></td>
-                                <td><h6 class="text-center">$ {{ number_format($producto->precio ,2) }}</h6></td>
-                                <td class="text-center">
-                                    @if ($producto->stock > $producto->alertas)
-                                       {{ $producto->stock }}
-                                       <label class="switch s-success  mb-4 mr-2">
-                                        <input type="checkbox" checked="">
-                                        <span class="slider round"></span>
-                                    </label>
-                                    @else
-                                        {{ $producto->stock }}
-                                        <label class="switch s-danger  mb-4 mr-2">
-                                            <input type="checkbox" checked="">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    @endif
-                                    {{-- <h6>{{ $producto->stock }}</h6> --}}
-                                </td>
-                                <td><h6 class="text-center">{{ $producto->alertas }}</h6>
-                                </td>
+                                <td><h6>{{ $moneda->tipomoneda }}</h6></td>
+                                <td><h6 class="text-center">$ {{ number_format($moneda->valor) }}</h6></td>
+                                
                                 {{-- <td class="text-center">
                                     <span>
-                                        <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
+                                        <img src="{{ asset('storage/productos/' . $moneda->imagen) }}"
                                             alt="Imagen de ejemplo" height="70px" width="80" class="rounded">
                                     </span>
                                 </td> --}}
                                 <td class="text-center">
                                     <span>
-                                        <img src="{{$producto->imagen}}" alt="Imagen de ejemplo" height="70px" width="80" class="rounded">
+                                        <img src="{{$moneda->imagen}}" alt="Imagen de ejemplo" height="70px" width="80" class="rounded">
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <!---Aca lo que hace es pasar el id de la categoria al hacer click-->
-                                    <a href="javascript:void(0)" wire:click="editar({{ $producto->id }})"
+                                    <a href="javascript:void(0)" wire:click="editar({{ $moneda->id }})"
                                         class="btn btn-primary mtmobile" tilte="editar">
                                         <i class="far fa-edit"></i>
                                     </a>
                                     <!--a diferencia del boton edit aca se va resolver con js.. nota: aca se puede resolver igual que arriba con: wire:click=delete{$categoria->id}}"-->
 
-                                    <a href="javascript:void(0)" onclick="Confirm('{{ $producto->id }}')"
+                                    <a href="javascript:void(0)" onclick="Confirm('{{ $moneda->id }}')"
                                         class="btn btn-primary" title="delete">
                                         <i class="far fa-trash-alt"></i>
                                     </a>
@@ -88,25 +65,26 @@
                         </tbody>
                     </table>
                     <!-- Paginación -->
-                    {{ $productos->links() }}
+                    {{ $monedas->links() }}
                 </div>
             </div>
 
         </div>
     </div>
     <!--incluir el Modal-->
-     @include('livewire.productos.formulario')
+     @include('livewire.monedas.formulario') 
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </div>
 
 <script>
   
 
         // aca se reciben los eveneto,, en este caso cierra el modal
-        window.addEventListener('productos-agregado', function(event) {
-            $('#theModal').modal('hide');
+        window.addEventListener('denominacion-agregada', function(event) {
+            $('#theModal').modal('hide');           
         });
 
-        window.addEventListener('producto-actualizado', function(event) {
+        window.addEventListener('denomimacion-actualizada', function(event) {
             $('#theModal').modal('hide');
         });
 
@@ -124,12 +102,19 @@
         });
         // Eventos de javascript-bootstrap ..   para buscar todos los elementos que tengan la clase er
         //para que cuando se cierre el modal o formulario se quiten todos los mensajes de error
-        window.addEventListener('hidde.bs.modal', function(event) {
+        $('#theModal').on('hidden.bs.modal', function(e) {
             $('.er').css('display', 'none')
         });
+        
+
+      
+        
 
 
 
+
+   
+    
     function Confirm(id) {
         swal({
             title: 'CONFIRMA',
@@ -154,4 +139,6 @@
 
         });
     };
+
+
 </script>

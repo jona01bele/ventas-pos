@@ -14,47 +14,47 @@ class DenominacionSeeder extends Seeder
     {
         Denominacion::create([
             'tipomoneda' =>'BILLETE',
-            'valor' => '2000' ,
+            'valor' => 2000 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'BILLETE',
-            'valor' => '5000' ,
+            'valor' => 5000 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'BILLETE',
-            'valor' => '10000' ,
+            'valor' => 10000 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'BILLETE',
-            'valor' => '20000' ,
+            'valor' => 20000 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'MONEDA',
-            'valor' => '1000' ,
+            'valor' => 1000 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'MONEDA',
-            'valor' => '500' ,
+            'valor' => 500 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'MONEDA',
-            'valor' => '200' ,
+            'valor' => 200 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'MONEDA',
-            'valor' => '100' ,
+            'valor' => 100 ,
             
         ]);
         Denominacion::create([
             'tipomoneda' =>'OTRO',
-            'valor' => '0' ,
+            'valor' => 0 ,
             
         ]);
        

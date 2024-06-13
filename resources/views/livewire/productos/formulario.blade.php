@@ -8,8 +8,10 @@
             <label>Nombre</label>
             <!--el lazy busca que no se renderice sino hasta que se pierda el foco de la caja de texto-->
             <input type="text" wire:model.lazy="nombre" placeholder="ej: Cursos..." class="form-control">
+
+            {{-- esta directiva muestra o prueba el comportaminto de los errores-->>  @dump($errors->all()) --}}
             @error('nombre')
-                <span class="text-danger er">{{ $mensaje }}</span>
+                <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
     </div>
@@ -20,7 +22,7 @@
             <!--el lazy busca que no se renderice sino hasta que se pierda el foco de la caja de texto-->
             <input type="text" wire:model.lazy="codigo" placeholder="ej: 985645512" class="form-control">
             @error('codigo')
-                <span class="text-danger er">{{ $mensaje }}</span>
+                <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
     </div>
@@ -32,7 +34,7 @@
             <input type="text" data-type="currency" wire:model.lazy="costo" placeholder="ej: $ 0.00"
                 class="form-control">
             @error('costo')
-                <span class="text-danger er">{{ $mensaje }}</span>
+                <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
     </div>
@@ -45,7 +47,7 @@
             <input type="text" data-type="currency" wire:model.lazy="precio" placeholder="ej: $ 0.00"
                 class="form-control">
             @error('precio')
-                <span class="text-danger er">{{ $mensaje }}</span>
+                <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
     </div>
@@ -56,7 +58,7 @@
             <!--el lazy busca que no se renderice sino hasta que se pierda el foco de la caja de texto-->
             <input type="number" wire:model.lazy="stock" placeholder="ej: 0" class="form-control">
             @error('stock')
-                <span class="text-danger er">{{ $mensaje }}</span>
+                <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
     </div>
@@ -67,31 +69,36 @@
             <!--el lazy busca que no se renderice sino hasta que se pierda el foco de la caja de texto-->
             <input type="number" wire:model.lazy="alertas" placeholder="ej: 10" class="form-control">
             @error('alertas')
-                <span class="text-danger er">{{ $mensaje }}</span>
+                <span class="text-danger er">{{ $message }}</span>
             @enderror
         </div>
     </div>
 
+
     <div class="col-sm-12 col-md-4">
         <div class="form-group">
             <label>Categorias</label>
-            <select class="form-control">
-                <option value="Elegir" disabled></option>
+            <select wire:model="categoriaid" class="form-control">
+                <option value="Elegir" disabled>Elegir</option>
                 @foreach ($categorias as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                 @endforeach
             </select>
+            @error('categoriaid')
+                <span class="text-danger er">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
 
     <div class="col-sm-12 mt-8">
         <div class="form-group custom-file">
-            <input type="file" class="custom-file-input form-control" wire:model="imagen"
-              {{-- filtrado de tipo de archivo --}}
+            <input type="file" class="custom-file-input form-control" wire:model="imagen" {{-- filtrado de tipo de archivo --}}
                 accept="image/x-png, image/gif, image/jpeg">
             <label class="custom-file-label">Imagen{{ $imagen }}</label>
-            @error('imagen') <span class="text-danger er">{{ $mensaje }}</span>@enderror
+            @error('imagen')
+                <span class="text-danger er">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 </div>
