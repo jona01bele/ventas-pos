@@ -78,7 +78,6 @@
 
 <script>
   
-
         // aca se reciben los eveneto,, en este caso cierra el modal
         window.addEventListener('denominacion-agregada', function(event) {
             $('#theModal').modal('hide');           

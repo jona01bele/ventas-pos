@@ -54,7 +54,7 @@ class MonedasControlador extends Component
         }
         else{
           //  $productos = Producto::orderBy('id', 'desc')->paginate($this->paginacion);
-            $monedas = Denominacion::orderBy('tipomoneda', 'asc')->paginate($this->paginacion);
+            $monedas = Denominacion::orderBy('id', 'desc')->paginate($this->paginacion);
         }
        
        return view('livewire.monedas.monedas', compact('monedas', 'denominaciones'))
@@ -66,13 +66,14 @@ class MonedasControlador extends Component
     { 
         // dd( 'el costo sugerido es : ',$this->costo);
         $rules = [
-            'tipomoneda' => 'required|min:3',
+            'tipomoneda' => 'required|not_in:Elegir',
             'valor' => 'required|min:3',
         ];
 
         $mensajes = [
             'tipomoneda.required' => 'ingrse el tipo de moneda',
             'tipomoneda.min' => 'Catacteres insuficientes',
+            'tipomoneda.not_in' => 'Elegir no es un valor valido',
             'valor.required' => 'Debe ingresar un valor',
             'valor.min' => 'Valor insuficiente',
             
@@ -93,8 +94,7 @@ class MonedasControlador extends Component
             'valor' => $monedaFormato,
         ]);
 
-        $monedaarchivo = "";
-
+        //$monedaarchivo = "";
         //validar la imagen
         if ($this->imagen) {
             $monedaarchivo = uniqid() . '_.' . $this->imagen->extension();
@@ -130,20 +130,24 @@ class MonedasControlador extends Component
     public function update()
     {
         $rules = [
-            'tipomoneda' => 'required|min:3',
-            'valor' => 'required|min:3',
+            'tipomoneda' => 'required|not_in:Elegir|min:3',
+            //el inique es con la finalidad de que este dato no se repita y en este cado se le sa la tabla y el id para que lo identifique
+            'valor' => "required|min:3|unique:denominacions,valor,{$this->seleccionar_id}",
+            
         ];
 
         $mensajes = [
-            'tipomoneda.required' => 'ingrse el tipo de moneda',
+            'tipomoneda.required' => 'ingrese el tipo de moneda',
+            'tipomoneda.not_in' => 'Elegir un tipo valido',
             'tipomoneda.min' => 'Catacteres insuficientes',
             'valor.required' => 'Debe ingresar un valor',
+            'valor.unique' => 'El valor ya existe',
             'valor.min' => 'Valor insuficiente',
             
         ];
 
         $this->validate($rules, $mensajes);
-        //---dar formato a la moneda
+       // ---dar formato a la moneda
          $monedaFormato = str_replace(',', '', $this->valor);
          $monedaFormato = str_replace('.', '', $monedaFormato);
          $monedaFormato = (float) $monedaFormato;
@@ -190,7 +194,7 @@ class MonedasControlador extends Component
         if ($denominacion) {
             // Usar el método getImagenPath() para obtener solo el nombre del archivo
             $nombreimagen = $denominacion->getImagenPath();
-            $denominacion->delete();  // Eliminar el registro de la base de datos
+            $denominacion->delete();  // Eliminar el registro de la base de datos. hasta aqui ya se elimna el registro ahora se de be eliminar la imagen del nuestros archivos
 
             // Validar si el nombre de la imagen no es nulo y eliminar la imagen del sistema de archivos
             if ($nombreimagen != null && file_exists(public_path('storage/monedas/' . $nombreimagen))) {
