@@ -109,9 +109,7 @@
                 console.log(result)
                 // Emitir el evento 'eliminarFila' con el ID de la categoría
                 // @this.dispatchSelf('eliminarFila', id);
-                @this.dispatch('eliminarFila', {
-                    id
-                });
+                @this.dispatch('eliminarFila', {id});
                 swal.close();
             }
 

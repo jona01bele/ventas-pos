@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('item');
             $table->float('cantidadpagada', 10, 2);
             $table->float('cambio', 10, 0);
-            $table->enum('estado', ['PAGADO', 'PENDIENTE', 'CANCELADO'])->default('PENDIENTE');
+            $table->enum('estado', ['PAGADO', 'PENDIENTE', 'CANCELADO'])->default('PAGADO');
             $table->unsignedBigInteger('id_usuario');
             $table->timestamps();
 

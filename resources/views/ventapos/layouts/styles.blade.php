@@ -30,6 +30,9 @@
 
 <link href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}" rel="stylesheet" type="text/css" class="structure" />
 
+{{-- funciona para dar bordes a los elementos --}}
+<link href="{{asset('assets/css/apps/scrumboard.css')}}" rel="stylesheet" type="text/css" class="structure" />
+<link href="{{asset('assets/css/apps/notes.css')}}" rel="stylesheet" type="text/css" class="structure" />
 <style>
     aside{
         /* esconde el icono de configucion o engrane */

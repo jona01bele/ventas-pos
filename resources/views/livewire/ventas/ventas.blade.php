@@ -7,12 +7,12 @@
             <!--Detalles-->
             @include('livewire.ventas.partes.detalles')
         </div>
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-4 ">
             <!--Total-->
             @include('livewire.ventas.partes.total')
 
             <!--Denominaciones-->
-            @include('livewire.ventas.partes.denomminaciones')
+            @include('livewire.ventas.partes.denominaciones')
         </div>
 
     </div>
