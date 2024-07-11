@@ -5,6 +5,7 @@
 <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('assets/css/structure.css')}}" rel="stylesheet" type="text/css" class="structure" />
+
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 {{-- <link href="{{asset('plugins/apex/apexcharts.css')}}" rel="stylesheet" type="text/css')}}">
@@ -22,7 +23,7 @@
 
 <link href="{{asset('plugins/sweetalerts/sweetalerts.css')}}" rel="stylesheet" type="text/css')}}">
 
-<link href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}" rel="stylesheet" type="text/css')}}">
+<link href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}" rel="stylesheet" type="text/css" />
 
 <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css')}}">
 
@@ -59,10 +60,10 @@
             display: block;
         }
     }
-color del sidebard en caso que se quiera modificar
-    .sidebar-theme #compactSidebar {
+/* color del sidebard en caso que se quiera modificar */
+    /* .sidebar-theme #compactSidebar {
     background: #032c1f;
-}
+} */
 </style>
 
 

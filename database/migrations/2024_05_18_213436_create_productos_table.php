@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('categoria_id');
             $table->float('costo', 10,2)->default(0);
             $table->float('precio',10,2)->default(0);
-            $table->integer('stock');
+            $table->integer('stock')->default(0);
             $table->integer('alertas');
             $table->string('imagen')->nullable();
             $table->timestamps();

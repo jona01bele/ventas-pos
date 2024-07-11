@@ -10,12 +10,12 @@
     </style>
     <!--este es el buscador improvisado ya que el buscador original por razones no concretada no me funciono en esta operacion  -->
     <div class="search-container mb-3 col-sm-4">
-        
+
         <input type="text" id="codigo" class="form-control "
             style="background: rgb(225, 219, 224); height: 40px; border-radius: 20px" placeholder="Buscar..."
             wire:keydown.enter="escanearCodigo($event.target.value)">
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="feather feather-search toggle-search">
             <circle cx="11" cy="11" r="8"></circle>
@@ -23,10 +23,11 @@
         </svg>
 
     </div>
-
+    
     <div class="connect-sorting">
 
         <!--incluir el controlador de la manera como se encuentra escrito-->
+        <span style="color: rgb(138, 5, 138); font-size: 110%; font-family: 'Times New Roman' ">{{$titulo}}</span>
 
         <div class="connect-sorting-content">
             <div class="card simple-title-task ui-sortable-handle">
@@ -89,27 +90,35 @@
                                             <td class="text-center">
 
                                                 <button
-                                                    onclick="confirm('{{ $carrito->id }}', 'removeItem', '¿COMFIRMA ELIMINAR REGISTRO')"
+                                                    onclick="confirmacion('{{ $carrito->producto_id }}')"
                                                     class="btn btn-secondary mbmobile">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
 
-                                                <button wire:click.prevent="restarCantidad({{ $carrito->cantidad }})"
+                                                {{-- <a href="javascript:void(0)"
+                                                    onclick="confirmacion('{{ $carrito->producto_id }}')"
+                                                    class="btn btn-primary" title="eliminar">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a> --}}
+                                                
+                                                <button wire:click.prevent="restarCantidad({{ $carrito->producto_id }})"
                                                     class="btn  mbmobile" style="background: red; color: white">
                                                     -
 
                                                 </button>
 
                                                 <button
-                                                    wire:click.prevent="incrementarCantidad({{ $carrito->cantidad }})"
+                                                    wire:click.prevent="incrementarCantidad({{ $carrito->producto_id }})"
                                                     class="btn btn-success mbmobile">
                                                     +
                                                 </button>
 
                                             </td>
                                         </tr>
+                                       
                                     @endforeach
-
+                                   
+  
                                 </tbody>
                             </table>
 
@@ -136,44 +145,79 @@
 </div>
 
 <script>
-    // document.addEventListener('livewire:initialized', () => {
-    //         console.log('Livewire is fully initialized');
-
-
-    //         // Eventos personalizados de Livewire
-    //         window.addEventListener('show-modal', function(event) {
-    //             $('#theModal').modal('show');
-    //         });
-
-
-    //     });
-
-    //  //ecuchar el Evento para limpiar la caja de texto
-    // document.addEventListener('DOMContentLoaded', function(){
-
-    //      // Eventos personalizados de Livewire
-    // //    livewire.on('escanearCodigo', actions => {
-    // //         $('#codigo').val('');
-    // //    });
-
-
-    // })
-    // window.addEventListener('escanearCodigo', function(event) {
-    //         $('#codigo').val('');
-    //     });
 
     //este evento es para que se limpie la caja de testo guando el buscador realice su funcion
     document.addEventListener('livewire:init', () => {
-        
-        // esta es la manera como se escucha desde el controlador en el video
+
+        // esta es la manera como se escucha desde el controlador en el video o livewire 2
         // Livewire.on('escanearCodigo', (event) => {
         //     $('#codigo').val('');
         // });
-
         // esta es la manera como lo estoy escuchando con livewire 3
         //La idea es limpiar la caja limpiar la caja de texto o el buscador cuando se ejecute la busqueda 
         window.addEventListener('escanearCodigo', function(event) {
             $('#codigo').val('');
-            });
+        });
+
+
+        //valida que la caja no este vacia y que el producto exista
+        window.addEventListener('Producto-no-existe', function() {
+            if ($('#codigo').val() === '') {
+                noty('INGRESE UN CODIGO VALIDO', 2);
+            } else {
+                noty('EL PRODUCTO NO EXISTE', 2);
+            }
+        });
+
+        window.addEventListener('No-stock', function(event) {
+            noty('STOCK INSUFICIENTE', 2);
+        });
+
+        // cuando se anexa productos al carrito
+        window.addEventListener('busqueda-ok', function(event) {
+            noty('PRODUCTO AGREGADO');
+        });
+        window.addEventListener('eliminado-ok', function(event) {
+            noty('PRODUCTO ELIMINADO', 2);
+        });
+
+        window.addEventListener('eliminado-total', function(event) {
+            noty('CARRITO ELIMINADO EXITOSAMENTE', 2);
+        });
+
+        window.addEventListener('eliminar-items', function(event) {
+            noty('ITEM ELIMINADO EXITOSAMENTE' , 2 );
+        });
+        window.addEventListener('transaccion-ok', function(event) {
+            swal("Transacion!", "Exitosa!", "success")
+        });
+
+
     });
+
+    function confirmacion(productoid) {
+        swal({
+            title: 'CONFIRMA',
+            text: '¿CONFIRMAR ELIMINAR REGISTRO?',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cerrar',
+            cancelButtonColor: '#fff',
+            confirmButtonColor: '#3B3F5C',
+            confirmButtonText: 'Aceptar'
+        }).then(function(result) {
+            console.log('hola')
+            if (result.value) {
+                console.log(result)
+                // Emitir el evento 'eliminarFila' con el ID de la categoría
+                // @this.dispatchSelf('eliminarFila', id);
+                @this.dispatch('eliminarItem', {productoid});
+                swal.close();
+            }
+
+        });
+    };
+
+
+ 
 </script>

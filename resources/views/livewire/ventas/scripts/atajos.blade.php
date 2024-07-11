@@ -1,4 +1,6 @@
-<script>
+{{-- <script>
+    
+
 
     //libreria para escuchar todos los eventos del teclado--- tabaja a traves de listener
     //pagina oficial: https://github.com/dmauro/Keypress
@@ -18,9 +20,9 @@
         ocument.getElementBYId('dinero').focus()
     })
 
-    // tecla F4 para cancelar la venta
+    // tecla F4 para cancelar la
     listener.simple_combo("f4", function(){
-        var total = parceFloat(document.getElementById('hiddenTotal'))
+        var total = parceFloat(document.getElementById('hiddenTotal').value)
         if(total > 0){
 
             // que tipo de parametros resive 
@@ -28,10 +30,10 @@
             Confirm(0, 'limpiarCarrito', 'SEGURO DE ELIMINAR ESTE CARRITO' )
         }
         else{
-            noty ('AGREGA PRODUCTOS A LA VENTA')
+            noty('AGREGA PRODUCTOS A LA VENTA')
         }
     })
 
 
 
-</script>
+</script> --}}

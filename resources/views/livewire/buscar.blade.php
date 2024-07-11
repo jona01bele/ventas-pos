@@ -1,6 +1,5 @@
 
-
-    
+            
 
 <ul class="navbar-item flex-row search-ul">
     <li class="nav-item align-self-center search-animated">
