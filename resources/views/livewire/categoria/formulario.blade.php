@@ -13,15 +13,15 @@
                 <!--el lazy busca que no se renderice sino hasta que se pierda el foco de la caja de texto-->
                 <input type="text" wire:model.lazy="nombre" placeholder="ej: Cursos" class="form-control">
             </div>
+            @error('nombre') <span class="text-danger er">{{$message}}</span> @enderror
         </div>
-        @error('nombre') <span class="text-danger er">{{$mensajes}}</span> @enderror
+       
           
-        
         <div class="col-sm-12 mt-3">
             <div class="form-group custom-file">
                 <input type="file" class="custom-file-input form-control" wire:model="imagen" accept="image/x-png, image/gif, image/jpeg">
                 <label for="" class="custom-file-label">Imagen{{$imagen}}</label>
-                @error('imagen') <span class="text-danger er">{{$mensajes}}</span>@enderror
+                @error('imagen') <span class="text-danger er">{{$message}}</span>@enderror
             </div>
         </div>
     </div>

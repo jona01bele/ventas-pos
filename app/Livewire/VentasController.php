@@ -59,7 +59,8 @@ class VentasController extends Component
     }
 
     //se utilizan en el icono que esta fncion para resetear efectivo y cambio en cero
-    public function resetEfectivoYCambio(){
+    public function resetEfectivoYCambio()
+    {
         $this->efectivo = 0;
         $this->cambio = 0;
     }
@@ -366,7 +367,7 @@ class VentasController extends Component
 
 
 
-    // la funcion de arriba busca actualizar solo la cantidad y este va actualizar todo
+    // la funcion de arriba busca actualizar solo la cantidad y este va actualizar todo.. con el input number
     //ojo con este metodo que esta en el curso
 
     // public function ActualizarCantidad($productoid, $cantidad = 1)
@@ -419,10 +420,60 @@ class VentasController extends Component
     // }
 
 
+
+    // la funcion de arriba busca actualizar solo la cantidad y este va actualizar todo.. con el input number
+    //ojo con este metodo que esta en el curso
+    public function actualizarCantidad($productoid, $nuevaCantidad)
+    {
+        
+        $titulo = '';
+
+        // Busca si el producto ya existe en el carrito
+        $existe = Carrito::where('producto_id', $productoid)->first();
+        // Encuentra el producto en la tabla de productos
+        $existeProducto = Producto::find($productoid);
+
+        if ($existeProducto) {
+            if ($existe) {
+                // Calcula la cantidad que se está agregando al carrito
+                $cantidadDiferencia = $nuevaCantidad - $existe->cantidad;
+
+                // Validar si hay suficiente stock
+                if ($existeProducto->stock < $cantidadDiferencia) {
+                    $this->dispatch('No-stock', 'Stock Insuficiente :/');
+                    return false;
+                }
+
+                // Actualiza la cantidad en el carrito
+                $existe->cantidad = $nuevaCantidad;
+                $existe->save();
+
+                // Ajusta el stock del producto
+                $existeProducto->stock -= $cantidadDiferencia;
+                $existeProducto->save();
+
+                $titulo = 'Cantidad Actualizada';
+            } else {
+                $this->dispatch('Producto-no-existe', 'Producto no encontrado en el carrito');
+                return false;
+            }
+
+            // Actualiza el total
+            $this->updateCart();
+            $this->dispatch('Cantidad-actualizada', $titulo);
+        } else {
+            $this->dispatch('Producto-no-existe', 'Producto no encontrado');
+        }
+    }
+
+
+
+
+
     // funcion para eliminar items del carrito segun el codigo pasado
     public function eliminarItem($productoid)
     {
-       
+
         //funcion para que me actualice el stock despued de eliminar items
         $this->devolucionStock();
 
@@ -446,7 +497,7 @@ class VentasController extends Component
         // Opcional: Devuelve false si no se encontró el registro
         return false;
     }
-    
+
 
     // Funcion para eliminar todo el carrito:
     // public function eliminarTodo()
@@ -486,7 +537,7 @@ class VentasController extends Component
         $this->updateCart();
         $this->limpiarCarrito();
 
-         $this->dispatch('eliminado-total');
+        $this->dispatch('eliminado-total');
     }
 
 
@@ -521,7 +572,7 @@ class VentasController extends Component
             $producto->save();
         }
     }
-   
+
 
     // metodo para decrementar la cantidad o actualiza la cantidad.
     public function restarCantidad($productoid, $cantidad = 1)
@@ -644,7 +695,6 @@ class VentasController extends Component
     // Metodo para poder imprimir los ticket
     public function imprimirTicket($sale)
     {
-
         //cuando se ejecute esto la aplicaion en c# lo va detectar y se manda imprimir los recibos
         return Redirect::to("print://$sale->id");
     }

@@ -19,7 +19,7 @@
         })
         console('Sacnner Listo')
 
-    } catch (e) {
+    } catch(e){
 
         console('Error de lectura', e)
     }

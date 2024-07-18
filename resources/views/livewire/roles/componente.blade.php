@@ -3,7 +3,7 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <h4 class="card-title">
-                    <b>{{ $componenteNombre }} | {{ $tituloPagina }}</b>
+                    <b>{{ $componenteNombre }} | {{ $titulo }}</b>
                 </h4>
                 <ul class="tabs tab-pills">
                     <li>
@@ -14,88 +14,82 @@
                 </ul>
             </div>
             @include('comun.buscador')
+
             <div class="widget-content">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped mt-1">
+                    <table class="table table-bordered table striped mt-1">
                         <thead class="text-white" style="background: #5c1ac3">
                             <tr>
-                                <th class="table-th text-white">CATEGORIAS</th>
-                                <th class="table-th text-white">iMAGENES</th>
+                                <th class="table-th text-white">ID</th>
+                                <th class="table-th text-white">DESCRIPCIÓN</th>
                                 <th class="table-th text-white">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categorias as $categoria)
+                            @foreach ($roles as $rol)
                                 <tr>
                                     <td>
-                                        <h6>{{ $categoria->nombre }}</h6>
-                                    </td>
-                                    {{-- <td class="text-center">
-                                        <span>
-                                            <img src="{{asset('storage/categorias/' . $categoria->imagen)}}"
-                                                alt="Imagen de ejemplo" height="70px" width="80" class="rounded">
-                                        </span>
-                                    </td> --}}
-                                    <td class="text-center">
-                                        <span>
-                                            <img src="{{$categoria->imagen}}" alt="Imagen de ejemplo" height="70px" width="80" class="rounded">
-                                        </span>
+                                        <h6>{{ $rol->id }}</h6>
                                     </td>
                                     <td class="text-center">
-                                        <!---Aca lo que hace es pasar el id de la categoria al hacer click-->
-                                        <a href="javascript:void(0)" wire:click="editar({{ $categoria->id }})"
-                                            class="btn btn-primary mtmobile" tilte="editar">
+                                        <h6>{{ $rol->name }}</h6>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="javascript:void(0)" wire:click="editar({{ $rol->id }})"
+                                            class="btn btn-primary mtmobile" tilte="Editar Registro">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <!--a diferencia del boton edit aca se va resolver con js.. nota: aca se puede resolver igual que arriba con: wire:click=delete{$categoria->id}}"-->
 
-                                        <a href="javascript:void(0)" onclick="Confirm('{{ $categoria->id }}')"
+                                        <a href="javascript:void(0)" onclick="Confirm('{{ $rol->id }}')"
                                             class="btn btn-primary" title="delete">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
 
-
                                     </td>
-
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
-                    {{ $categorias->links() }}
+                    {{ $roles->links() }}
                 </div>
             </div>
 
         </div>
     </div>
-    <!--incluir el Modal-->
-    @include('livewire.categoria.formulario')
-
-
+    @include('livewire.roles.form')
 </div>
+
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
 
-    
-
-
-    document.addEventListener('livewire:initialized', () => {
-        console.log('Livewire is fully initialized');
-
-
-        // Eventos personalizados de Livewire
+        window.addEventListener('rol-agregado', function(event) {
+            $('#theModal').modal('hide');
+            noty('REGISTRO EXITOSO')
+        });
+        window.addEventListener('rol-actualizado', function(event) {
+            $('#theModal').modal('hide');
+            noty('ACTUALIZACIÓN EXITOSA')
+        });
+        window.addEventListener('rol-eliminado', function(event) {
+            noty('OPERACION EXITOSA')
+        });
+        window.addEventListener('rol-existencia', function(event) {
+            noty('ROL NO ENCONTRADO')
+        });
+        window.addEventListener('rol-error', function(event) {
+            noty('cambiar de acuendo al contexto')
+        });
+        window.addEventListener('hide-modal', function(event) {
+            $('#theModal').modal('hide');
+            noty('Cambiar de acuerdo al contexto')
+        });
         window.addEventListener('show-modal', function(event) {
             $('#theModal').modal('show');
+
         });
 
-        window.addEventListener('categoria-agregada', function(event) {
-            $('#theModal').modal('hide');
-        });
-
-        window.addEventListener('categoria-actualizada', function(event) {
-            $('#theModal').modal('hide');
-        });
     });
-
-
 
     function Confirm(id) {
         swal({
@@ -113,10 +107,15 @@
                 console.log(result)
                 // Emitir el evento 'eliminarFila' con el ID de la categoría
                 // @this.dispatchSelf('eliminarFila', id);
-                @this.dispatch('eliminarFila', {id});
+                @this.dispatch('eliminarFila', {
+                    id
+                });
                 swal.close();
             }
 
         });
     };
+
+ 
+       
 </script>

@@ -23,11 +23,12 @@
         </svg>
 
     </div>
-    
+
     <div class="connect-sorting">
 
         <!--incluir el controlador de la manera como se encuentra escrito-->
-        <span style="color: rgb(138, 5, 138); font-size: 110%; font-family: 'Times New Roman' ">{{$titulo}}</span>
+        <span
+            style="color: rgb(138, 5, 138); font-size: 110%; font-family: 'Times New Roman' ">{{ $titulo }}</span>
 
         <div class="connect-sorting-content">
             <div class="card simple-title-task ui-sortable-handle">
@@ -76,12 +77,22 @@
                                                 <h6>{{ $carrito->nombre }}</h6>
                                             </td>
                                             <td class="text-center">${{ number_format($carrito->precio, 2) }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <input type="number" id="r{{ $carrito->id }}"
-                                                    wire:change="actualizarCantidad({{ $carrito->id }}, $('#r' + {{ $carrito->id }}).val())"
+                                                    wire:change="ActualizarCantidad({{ $carrito->id }}, $('#r' + {{ $carrito->id }}).val())"
                                                     style="font-size: 1rem!important" class="form-control text-center"
                                                     value="{{ $carrito->cantidad }}">
+                                            </td> --}}
+
+                                            <td>
+                                                <input type="number" id="r{{ $carrito->id }}"
+                                                       wire:change="actualizarCantidad({{ $carrito->producto_id }}, $event.target.value)"
+                                                       style="font-size: 1rem!important" class="form-control text-center"
+                                                       value="{{ $carrito->cantidad }}">
                                             </td>
+
+
+
                                             <td class="center">
                                                 <h6>
                                                     ${{ number_format($carrito->precio * $carrito->cantidad, 2) }}
@@ -89,8 +100,7 @@
                                             </td>
                                             <td class="text-center">
 
-                                                <button
-                                                    onclick="confirmacion('{{ $carrito->producto_id }}')"
+                                                <button onclick="confirmacion('{{ $carrito->producto_id }}')"
                                                     class="btn btn-secondary mbmobile">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
@@ -100,8 +110,9 @@
                                                     class="btn btn-primary" title="eliminar">
                                                     <i class="far fa-trash-alt"></i>
                                                 </a> --}}
-                                                
-                                                <button wire:click.prevent="restarCantidad({{ $carrito->producto_id }})"
+
+                                                <button
+                                                    wire:click.prevent="restarCantidad({{ $carrito->producto_id }})"
                                                     class="btn  mbmobile" style="background: red; color: white">
                                                     -
 
@@ -115,10 +126,9 @@
 
                                             </td>
                                         </tr>
-                                       
                                     @endforeach
-                                   
-  
+
+
                                 </tbody>
                             </table>
 
@@ -145,7 +155,6 @@
 </div>
 
 <script>
-
     //este evento es para que se limpie la caja de testo guando el buscador realice su funcion
     document.addEventListener('livewire:init', () => {
 
@@ -186,10 +195,31 @@
         });
 
         window.addEventListener('eliminar-items', function(event) {
-            noty('ITEM ELIMINADO EXITOSAMENTE' , 2 );
+            noty('ITEM ELIMINADO EXITOSAMENTE', 2);
         });
         window.addEventListener('transaccion-ok', function(event) {
             swal("Transacion!", "Exitosa!", "success")
+        });
+
+        window.addEventListener('Cantidad-actualizada', function(event) {
+            noty('CANTIDAD ACTUALIZADA')
+        });
+
+        // window.addEventListener('imprimir-tickect', function(vantaId) {
+        //     window.open("print: //" + vantaId , '_blank' )
+        // });
+
+        window.addEventListener('imprimir-tickect', (event) => {
+            setTimeout(() => {
+                try {
+                    const ventaId = event.detail;
+                    window.open(`/imprimir/${ventaId}`, '_blank');
+                } catch (error) {
+                    console.error('Error al imprimir el ticket:', error);
+                    alert(
+                        'Ocurrió un error al imprimir el ticket. Por favor, inténtalo nuevamente.');
+                }
+            }, 500);
         });
 
 
@@ -211,13 +241,12 @@
                 console.log(result)
                 // Emitir el evento 'eliminarFila' con el ID de la categoría
                 // @this.dispatchSelf('eliminarFila', id);
-                @this.dispatch('eliminarItem', {productoid});
+                @this.dispatch('eliminarItem', {
+                    productoid
+                });
                 swal.close();
             }
 
         });
     };
-
-
- 
 </script>
