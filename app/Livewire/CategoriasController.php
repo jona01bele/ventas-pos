@@ -191,6 +191,10 @@ class CategoriasController extends Component
         $this->nombre = "";
         $this->imagen = null;
         $this->seleccionar_id = 0;
+        //para que los errores de validacion se quiten 
+        //cualquiera de los de abajo funcionan
+        //$this->resetErrorBag();
+        $this->resetValidation();
     }
 
     // en este caso el evento se esta desarrollando desde el fronend y debe ser escuchado en el backend

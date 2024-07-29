@@ -257,5 +257,9 @@ class ProductosController extends Component
         $this->alertas = '';
         $this->imagen = null;
         $this->seleccionar_id = 0;
+        //para que los errores de validacion se quiten 
+        //cualquiera de los de abajo funcionan
+        //$this->resetErrorBag();
+        $this->resetValidation();
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles; 
+use Illuminate\Database\Eloquent\Casts\Attribute; // util para la imagen cuando se va colocar una predifinida en caso que no se guarde un avatar
 
 class User extends Authenticatable
 {
@@ -50,4 +51,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected function imagen(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                if ($value && file_exists(public_path('storage/usuarios/' . $value))) {
+                    return asset('storage/usuarios/' . $value);
+                } else {
+                    return asset('storage/usuarios/noimagen.png');
+                }
+            }
+        );
+    }
+
+    public function getImagenPath()
+    {
+        return $this->attributes['imagen'];
+    }
+
+
 }
