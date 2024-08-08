@@ -34,6 +34,10 @@
 {{-- funciona para dar bordes a los elementos --}}
 <link href="{{asset('assets/css/apps/scrumboard.css')}}" rel="stylesheet" type="text/css" class="structure" />
 <link href="{{asset('assets/css/apps/notes.css')}}" rel="stylesheet" type="text/css" class="structure" />
+
+<!--estilos par flatpickr que son los estilos de la fechas-->
+<link href="{{asset('plugins/flatpickr/flatpickr.dark.css')}}" rel="stylesheet" type="text/css" class="structure" />
+
 <style>
     aside{
         /* esconde el icono de configucion o engrane */

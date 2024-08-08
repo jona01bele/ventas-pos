@@ -13,6 +13,8 @@
          App.init();
      });
  </script>
+<!--plugin para loas personalizar fechas-->
+<script src="{{ asset('plugins/flatpickr/flatpickr.js')}}"></script>
 
 
 

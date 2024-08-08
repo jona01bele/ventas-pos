@@ -9,6 +9,8 @@ use App\Livewire\RolesController;
 use App\Livewire\VentasController;
 use App\Livewire\PermisosContoller;
 use App\Livewire\UsuarioController;
+use App\Livewire\CorteCajaController;
+use App\Livewire\ReporteController;
 
 
 Route::get('/', function () {
@@ -30,4 +32,5 @@ Route::get('/roles', RolesController::class)->name('roles');
 Route::get('/permisos', PermisosContoller::class)->name('permisos');
 Route::get('/asignar', AsignarController::class)->name('asignar');
 Route::get('/usuario', UsuarioController::class)->name('usuario');
-
+Route::get('/cortecaja', CorteCajaController::class)->name('cortecaja');
+Route::get('/reporte', ReporteController::class)->name('reporte');
